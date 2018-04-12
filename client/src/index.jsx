@@ -12,7 +12,6 @@ class App extends React.Component {
     }
 
   }
-
   search (term) {
     console.log(`${term} was searched`);
     
@@ -26,6 +25,18 @@ class App extends React.Component {
         console.log('success')
       }
      });
+    var that=this;
+    $.ajax({
+      type: "GET",
+      url: '/repos',
+      success: function(data){
+        console.log(data)
+
+        that.setState=({repos:[1,2,3,4]})
+      }
+     });
+
+    
   }
 
   render () {

@@ -19,17 +19,23 @@ app.post('/repos', function (req, res) {
   var username=req.body.name
   // db.save(req.body);
   github.getReposByUsername(username,function(body){
-  	console.log(body)
-  	db.save(body);
+  	// console.log((JSON.parse(body)[0]).url)
+
+  	db.save(JSON.parse(body));
   })
+
   res.send('success')
   // console.log(req.body)
 
 });
 
 app.get('/repos', function (req, res) {
-  // TODO - your code here!
   // This route should send back the top 25 repos
+  db.Repo.find( function (err, docs) {
+  		console.log(docs)
+       res.json(docs);
+    });
+  // res.end('data sent!')
 });
 
 let port = 1128;
